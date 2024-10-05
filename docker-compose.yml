@@ -1,0 +1,25 @@
+version: '3'
+services:
+  book-catalog:
+    image: ${CONTAINER_REGISTRY}/book-catalog:${VERSION}
+    container_name: book-catalog
+    ports:
+      - "8080:4000"  # Maps port 8080 on the host to port 4000 inside the container
+    environment:
+      - PORT=4000
+    networks:
+      - app-network
+
+  inventory-management:
+    image: ${CONTAINER_REGISTRY}/inventory-management:${VERSION}
+    container_name: inventory-management
+    ports:
+      - "80:5000"  # Maps port 80 on the host to port 5000 inside the container
+    environment:
+      - PORT=5000
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
