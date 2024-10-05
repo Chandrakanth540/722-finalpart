@@ -44,6 +44,9 @@ jobs:
       #
       - name : Make script executable
         run : chmod +x ./scripts/build-image.sh
+
+      - name : Convert line endings (if necessary)
+        run : dos2unix ./scripts/build-image.sh || sed -i 's/\r$//' ./scripts/build-image.sh
         
       - name: Build
         run: ./scripts/build-image.sh
